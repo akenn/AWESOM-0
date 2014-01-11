@@ -33,16 +33,13 @@ module.exports = function (bot) {
     bot.client.say(msg.channel, "Your cards are a " + player[0] + " and a " + player[1] + ".");
     bot.client.say(msg.channel, "Dealer is showing a " + dealer[1] + ".");
     bot.client.say(msg.channel, "Would you like to hit or stand?")
-    
+
   });
 
   bot.respond(/^hit$/, "Player hits!", function (msg) {
-      var temp = Math.floor(Math.random() * (deck.length() + 1));
-      var index = player.length();
-      player[index] = deck[temp];
-      deck.splice(temp, 1);
-    };
     
+    player[player.length()] = deck.splice(Math.floor(Math.random() * (deck.length() + 1)), 1);
+ 
     pTotal();
     
     if (pTotal == 21) { 
